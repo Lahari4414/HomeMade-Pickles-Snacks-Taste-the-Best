@@ -10,14 +10,15 @@ app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
 # AWS Configuration
-dynamodb = boto3.resource('dynamodb', region_name='your-region')
+dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
 user_table = dynamodb.Table('Users')
 orders_table = dynamodb.Table('Orders')
 
-EMAIL_ADDRESS = 'your_email@gmail.com'
-EMAIL_PASSWORD = 'your_gmail_app_password'
+# Email Configuration
+EMAIL_ADDRESS = 'laharikessamsetty@gmail.com'
+EMAIL_PASSWORD = 'iyxh zneg oyog tyui'  # Replace with your actual Gmail App Password
 
-# Product Data
+# Product Data - Unchanged
 veg_items = [
     {"name": "Mango Pickle", "price": 150, "img": "mango-pickle.jpg"},
     {"name": "Lemon Pickle", "price": 120, "img": "lemon-pickle.jpg"},
@@ -103,6 +104,7 @@ def checkout():
         })
 
         send_email(email, "Order Confirmation", f"Thank you {name} for your order! Total: ₹{total}")
+
         session.pop('cart', None)
         return render_template('success.html', name=name, order_id=order_id)
 
@@ -168,5 +170,5 @@ def send_email(to_email, subject, body):
     except Exception as e:
         print(f"Failed to send email: {e}")
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if name == '__main__':
+ app.run(debug=True, host='0.0.0.0', port=5000)
