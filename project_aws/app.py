@@ -12,7 +12,7 @@ app.secret_key = os.urandom(24)
 # AWS Configuration
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 user_table = dynamodb.Table('Users')
-orders_table = dynamodb.Table('Orders')
+orders_table = dynamodb.Table('PickleOrders')
 
 # Email Configuration
 EMAIL_ADDRESS = 'laharikessamsetty@gmail.com'
