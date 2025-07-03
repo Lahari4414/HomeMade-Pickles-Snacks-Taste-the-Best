@@ -170,5 +170,5 @@ def send_email(to_email, subject, body):
     except Exception as e:
         print(f"Failed to send email: {e}")
 
-if name == '__main__':
+if __name__== '__main__':
  app.run(debug=True, host='0.0.0.0', port=5000)
